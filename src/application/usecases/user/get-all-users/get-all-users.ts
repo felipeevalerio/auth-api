@@ -1,5 +1,4 @@
 import { inject, injectable } from "tsyringe";
-import { User } from "../../../../domain/entities/User";
 import { IUserRepository } from "../../../../infrastructure/repositories/user-repository-interface";
 import { IGetAllUsersUseCase } from "./get-all-users-interface";
 
