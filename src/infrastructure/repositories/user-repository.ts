@@ -47,25 +47,35 @@ export class UserRepository implements IUserRepository {
     }
 
     async update(user: User): Promise<void> {
-        await prisma.user.update({
-            where: {
-                id: user.id
-            },
-            data: {
-                email: user.props.email,
-                password: user.props.password,
-                fullName: user.props.fullName,
-                updatedAt: user.updatedAt
-            }
-        })
+        try {
+            await prisma.user.update({
+                where: {
+                    id: user.id
+                },
+                data: {
+                    email: user.props.email,
+                    password: user.props.password,
+                    fullName: user.props.fullName,
+                    updatedAt: user.updatedAt
+                }
+            })
+        }
+        catch(err) {
+            throw new Error('Error while updating user.')
+        }
     }
 
     async delete(id: string): Promise<void> {
-        await prisma.user.delete({
-            where: {
-                id: id
-            }
-        })
+        try {
+            await prisma.user.delete({
+                where: {
+                    id: id
+                }
+            })
+        }
+        catch(err) {
+            throw new Error('Error while deleting user.')
+        }
     }
 
     async getAll(): Promise<User[]> {
