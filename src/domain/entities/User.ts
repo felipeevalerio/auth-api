@@ -1,3 +1,4 @@
+import { encrypt } from "../../utils/encrypt";
 import { BaseEntity } from "./BaseEntity";
 
 interface UserProps {
@@ -11,7 +12,12 @@ export class User extends BaseEntity<UserProps>{
         super(props);
     }
 
-    static create(props: UserProps) {
-        return new User(props);
+    public static async create(props: UserProps) {
+        const encryptedPassword = await encrypt(props.password)
+        
+        return new User({
+            ...props, 
+            password: encryptedPassword,
+        });
     }
 }
