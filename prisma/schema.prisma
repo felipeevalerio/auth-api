@@ -12,4 +12,6 @@ model User {
   email String @unique
   fullName String
   password String
+  createdAt DateTime
+  updatedAt DateTime
 }
